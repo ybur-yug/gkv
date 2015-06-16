@@ -5,6 +5,8 @@ Gkv is a simple git wrapper that allows you to use it as a kv store
 
 #### DO NOT use this in real software at its current state.
 
+#### This is the product of a [tutorial](https://github.com/ybur-yug/git_kv_store_tutorial) I wrote to explore git.
+
 ## Installation
 
 Add this line to your application's Gemfile:
