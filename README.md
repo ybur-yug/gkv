@@ -29,6 +29,22 @@ db = Gkv::Database.new
 db.set("Apples", "10")
 db.get("Apples")
 # => "10"
+
+# using it in sinatra
+require 'sinatra'
+require 'json'
+
+post '/' do
+  db.set(params['key'], params['value')
+  { msg: "#{params['key']} set to #{params['value']}" }.to_json
+  rescue
+    { error: "Please send key and value params" }.to_json
+  end
+end
+
+get '/get/:key' do
+  { key: db.get(params['key']) }.to_json
+end
 ```
 ## Development
 
