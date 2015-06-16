@@ -1,8 +1,9 @@
 # Gkv
+[![Join the chat at https://gitter.im/ybur-yug/gkv](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ybur-yug/gkv?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/gkv`. To experiment with that code, run `bin/console` for an interactive prompt.
+Gkv is a simple git wrapper that allows you to use it as a kv store
 
-TODO: Delete this and the text above, and describe your gem
+#### DO NOT use this in real software at its current state.
 
 ## Installation
 
@@ -22,8 +23,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+db = Gkv::Database.new
 
+db.set("Apples", "10")
+db.get("Apples")
+# => "10"
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake rspec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -34,8 +40,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/gkv. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
+Feel free to check out the gitter room and ask whats on the agenda.
+
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
+See [this](http://www.wtfpl.net/about/).
