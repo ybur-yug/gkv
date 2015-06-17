@@ -17,6 +17,8 @@ module Gkv
       cat_file(@items[key.to_s])
     end
 
+    private
+
     def hash_object(data)
       write_tmpfile(data)
       hash = `git hash-object -w tmp.txt`.strip!
@@ -32,10 +34,6 @@ module Gkv
 
     def cat_file(hash)
       `git cat-file -p #{hash}`
-    end
-
-    def versions(key)
-      @items[key].length
     end
   end
 end
