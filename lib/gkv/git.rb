@@ -13,14 +13,20 @@ module Gkv
       f.close
     end
 
-    def self.cat_file(hash)
+    def cat_file(hash)
       `git cat-file -p #{hash}`
     end
   end
 
   module DbFunctions
-    def self.key_present?(key, items)
-      items.keys.include? key
+    def update_items(key, value)
+      if $items.keys.include? key
+        history = $items[key]
+        history << Gkv::GitFunctions.hash_object(value.to_s)
+        $items[key] = history
+      else
+        $items[key] = [Gkv::GitFunctions.hash_object(value.to_s)]
+      end
     end
   end
 end
