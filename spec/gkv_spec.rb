@@ -29,4 +29,8 @@ describe Gkv do
     db.set('Pants', 10)
     expect(db.get('Pants')).to eq '10'
   end
+
+  it 'returns the key when a key is set' do
+    expect(db.set('Apples', '10')).to eq '10'
+  end
 end

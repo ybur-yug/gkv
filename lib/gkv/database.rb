@@ -11,10 +11,15 @@ module Gkv
 
     def set(key, value)
       update_items(key, value)
+      value
     end
 
     def get(key)
-      cat_file($items[key.to_s].last)
+      if $items.keys.include? key
+        cat_file($items.fetch(key.to_s).last)
+      else
+        raise KeyError
+      end
     end
 
     def get_version(version, key)

@@ -23,6 +23,45 @@ Or install it yourself as:
 
     $ gem install gkv
 
+## API
+There are 3 main functions:
+
+### Set
+
+set(*key*, *value*)
+
+```ruby
+db = Gkv::Database.new
+db.set('key', 12)
+# input is all coerced to the string type and returned when set
+# => '12'
+```
+
+### Get
+get(*key*)
+
+```ruby
+db = Gkv::Database.new
+db.set('apples', '10')
+# => '10'
+db.get('apples')
+# => '10'
+```
+
+### Get Version
+
+get(*version*, *key*)
+
+```ruby
+db = Gkv::Database.new
+db.set('apples', '20')
+db.set('apples', '50')
+db.get_version(1, 'apples')
+# => '20'
+db.get_version(2, 'apples')
+# => '50'
+```
+
 ## Usage
 
 ```ruby
@@ -38,6 +77,10 @@ db.get("Apples")
 # => "12"
 db.get_version(1, "Apples")
 #=> 10
+
+# keys that do not exist return KeyError
+db.get('magic')
+# => KeyError
 
 # using it in sinatra
 require 'sinatra'
