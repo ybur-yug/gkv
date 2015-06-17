@@ -17,4 +17,10 @@ module Gkv
       `git cat-file -p #{hash}`
     end
   end
+
+  module DbFunctions
+    def self.key_present?(key, items)
+      items.keys.include? key
+    end
+  end
 end

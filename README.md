@@ -32,6 +32,13 @@ db.set("Apples", "10")
 db.get("Apples")
 # => "10"
 
+# update some values
+db.set("Apples", "12")
+db.get("Apples")
+# => "12"
+db.get_version(1, "Apples")
+#=> 10
+
 # using it in sinatra
 require 'sinatra'
 require 'json'
@@ -60,7 +67,7 @@ a git tag for the version, push git commits and tags, and push the `.gem` file t
 ## Contributing
 Feel free to check out the gitter room and ask whats on the agenda.
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/ybur-yug/gkv. This project is 
+Bug reports and pull requests are welcome on GitHub at https://github.com/ybur-yug/gkv. This project is
 intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to
 the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
