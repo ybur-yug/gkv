@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-require "gkv"
+require 'bundler/setup'
+require 'gkv'
 
 DB = Gkv::Database.new
 
-require "irb"
+require 'irb'
 IRB.start

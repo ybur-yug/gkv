@@ -1,11 +1,3 @@
 #!/usr/bin/env ruby
 
 require 'gkv'
-
-if ARGV[0] = 'set'
-  DB.set(ARGV[1], ARGV[2])
-elsif ARGV[0] = 'get'
-  DB.get(ARGV[1])
-else
-  puts "gkv only supports `set` and `get` arguments followed by a key, and then value"
-end
