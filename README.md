@@ -81,23 +81,10 @@ db.get_version(1, "Apples")
 # keys that do not exist return KeyError
 db.get('magic')
 # => KeyError
-
-# using it in sinatra
-require 'sinatra'
-require 'json'
-
-post '/' do
-  db.set(params['key'], params['value')
-  { msg: "#{params['key']} set to #{params['value']}" }.to_json
-  rescue
-    { error: "Please send key and value params" }.to_json
-  end
-end
-
-get '/get/:key' do
-  { key: db.get(params['key']) }.to_json
-end
 ```
+
+There is an example application included in the `example_app` directory that utilizes Sinatra
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake rspec` to run the
