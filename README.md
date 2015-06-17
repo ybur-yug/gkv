@@ -50,7 +50,7 @@ db.get('apples')
 
 ### Get Version
 
-get(*version*, *key*)
+get_version(*version*, *key*)
 
 ```ruby
 db = Gkv::Database.new
