@@ -34,7 +34,7 @@ set(*key*, *value*)
 db = Gkv::Database.new
 db.set('key', 12)
 # input is all coerced to the string type and returned when set
-# => 'some_hash'
+# => 'key'
 ```
 
 ### Get
@@ -43,7 +43,7 @@ get(*key*)
 ```ruby
 db = Gkv::Database.new
 db.set('apples', '10')
-# => 'some_hash'
+# => 'apples'
 db.get('apples')
 # => '10'
 ```
@@ -55,9 +55,9 @@ get_version(*version*, *key*)
 ```ruby
 db = Gkv::Database.new
 db.set('apples', '20')
-# => some_hash
+# => 'apples'
 db.set('apples', '50')
-# => some_hash
+# => 'apples'
 db.get_version(1, 'apples')
 # => '20'
 db.get_version(2, 'apples')
@@ -69,18 +69,18 @@ db.get_version(2, 'apples')
 ```ruby
 db = Gkv::Database.new
 
-db.set("Apples", "10")
-# => some_hash
-db.get("Apples")
-# => "10"
+db.set('Apples', '10')
+# => 'Apples'
+db.get('Apples')
+# => '10'
 
 # update some values
-db.set("Apples", "12")
-# => some_hash
-db.get("Apples")
-# => "12"
-db.get_version(1, "Apples")
-#=> 10
+db.set('Apples', '12')
+# => 'Apples'
+db.get('Apples')
+# => '12'
+db.get_version(1, 'Apples')
+#=> '10'
 
 # keys that do not exist return KeyError
 db.get('magic')
