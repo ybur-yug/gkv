@@ -31,6 +31,6 @@ describe Gkv do
   end
 
   it 'returns the key when a key is set' do
-    expect(db.set('Apples', '10')).to eq '10'
+    expect(db.set('Apples', '10')).to eq 'Apples'
   end
 end

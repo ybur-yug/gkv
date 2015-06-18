@@ -11,7 +11,7 @@ module Gkv
 
     def set(key, value)
       update_items(key, value)
-      value
+      key
     end
 
     def get(key)
