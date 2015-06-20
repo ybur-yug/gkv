@@ -3,6 +3,12 @@ require 'spec_helper'
 describe Gkv do
   let(:db) { Gkv::Database.new }
 
+  def clear_db
+    $items = {}
+  end
+
+  before(:each) { clear_db }
+
   it 'has a version number' do
     expect(Gkv::VERSION).not_to be nil
   end
@@ -32,5 +38,12 @@ describe Gkv do
 
   it 'returns the key when a key is set' do
     expect(db.set('Apples', '10')).to eq 'Apples'
+  end
+
+  it 'can get all stored items' do
+    db.set('ants', 10)
+    db.set('bob', 10)
+    db.set('cants', 10)
+    expect(db.all).to eq [{ 'ants': '10' }, { 'bob': '10' }, { 'cants': '10' }]
   end
 end

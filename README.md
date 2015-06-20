@@ -68,6 +68,18 @@ db.get_version(2, 'apples')
 # => '50'
 ```
 
+### All
+
+all
+
+```ruby
+db.set('apples', '10')
+db.set('ants',   '10')
+db.set('things', '10')
+db.all
+# =>[{ 'apples': '10' }, { 'ants': '10' }, { 'things': '10' }]
+```
+
 ## Usage
 
 ```ruby

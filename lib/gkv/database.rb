@@ -25,5 +25,9 @@ module Gkv
     def get_version(version, key)
       Gkv::GitFunctions.cat_file($items[key][version.to_i - 1])
     end
+
+    def all
+      $items.keys.map { |k| { "#{k}": Gkv::GitFunctions.cat_file($items[k].last) } }
+    end
   end
 end
