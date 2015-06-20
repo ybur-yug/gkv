@@ -8,6 +8,10 @@ get '/get/:key' do
   db.get(params['key'])
 end
 
+get '/get/:key/:version' do
+  db.get_version(params['version'], params['key'])
+end
+
 post '/set' do
   begin
     key, value = params.fetch('key'), params.fetch('value')
