@@ -1,5 +1,7 @@
 module Gkv
   module GitFunctions
+    extend self
+
     def self.hash_object(data)
       write_tmpfile(data)
       hash = `git hash-object -w tmp.txt`.strip!
