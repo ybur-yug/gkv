@@ -82,6 +82,8 @@ db.all
 
 ## Usage
 
+[![asciicast](https://asciinema.org/a/0ss6cqmm6yhnyvz88bdy37oiq.png)](https://asciinema.org/a/0ss6cqmm6yhnyvz88bdy37oiq)
+
 ```ruby
 db = Gkv::Database.new
 
