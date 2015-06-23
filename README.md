@@ -28,7 +28,7 @@ Or install it yourself as:
     $ gem install gkv
 
 ## API
-There are 3 main functions:
+There are 4 main functions:
 
 ### Set
 
