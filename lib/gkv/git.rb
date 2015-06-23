@@ -1,3 +1,5 @@
+require 'parser/current'
+
 module Gkv
   module GitFunctions
     extend self
@@ -21,13 +23,23 @@ module Gkv
   end
 
   module DbFunctions
-    def update_items(key, value, type)
+    class BlankSlate
+      instance_methods.each do |name|
+        class_eval do
+          unless name =~ /^__|^instance_eval$|^binding$|^object_id$/
+            undef_method(name)
+          end
+        end
+      end
+    end
+
+    def update_items(key, value)
       if $items.keys.include? key
         history = $items[key]
-        history << [Gkv::GitFunctions.hash_object(value.to_s), type]
+        history << Gkv::GitFunctions.hash_object(value.to_s)
         $items[key] = history
       else
-        $items[key] = [[Gkv::GitFunctions.hash_object(value.to_s), type]]
+        $items[key] = [Gkv::GitFunctions.hash_object(value.to_s)]
       end
     end
   end

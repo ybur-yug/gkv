@@ -9,32 +9,42 @@ module Gkv
       `git init`
     end
 
-    def set(key, value, type='s')
-      update_items(key, value, type)
+    def set(key, value)
+      update_items(key, value)
       key
     end
 
     def get(key)
-      if $items.keys.include? key
-        hash = $items.fetch(key.to_s).last.first
-        type = $items.fetch(key.to_s).last.last
-        Gkv::GitFunctions.cat_file(hash).send("to_#{type}".to_sym)
-      else
-        raise KeyError
-      end
+      clean_room = Gkv::DbFunctions::BlankSlate.new
+      str_val = Gkv::GitFunctions.cat_file($items.fetch(key).last)
+      proc do
+        clean_room.instance_eval do
+          binding
+        end.eval("#{str_val}")
+      end.call
     end
 
     def get_version(version, key)
-      hash = $items[key][version.to_i - 1].first
-      type = $items[key][version.to_i - 1].last
-      Gkv::GitFunctions.cat_file(hash).send("to_#{type}".to_sym)
+      hash = $items[key][version.to_i - 1]
+      clean_room = Gkv::DbFunctions::BlankSlate.new
+      str_val = Gkv::GitFunctions.cat_file(hash)
+      proc do
+        clean_room.instance_eval do
+          binding
+        end.eval("#{str_val}")
+      end.call
     end
 
     def all
       $items.keys.map { |key|
-        hash = $items[key].last.first
-        type = $items[key].last.last
-        value = Gkv::GitFunctions.cat_file(hash).send("to_#{type}".to_sym)
+        hash = $items[key].last
+        str_val = Gkv::GitFunctions.cat_file(hash)
+        clean_room = Gkv::DbFunctions::BlankSlate.new
+        value = proc do
+          clean_room.instance_eval do
+            binding
+          end.eval("#{str_val}")
+        end.call
         { "#{key}": value }
       }
     end
