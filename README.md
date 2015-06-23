@@ -32,13 +32,19 @@ There are 3 main functions:
 
 ### Set
 
-set(*key*, *value*)
+set(*key*, *value*, *type*)
+Type defaults to `s`, while `i` and `f` are also acceptable
 
 ```ruby
 db = Gkv::Database.new
-db.set('key', 12)
+db.set('key', '12') # no type declaration defaults to string
 # input is all coerced to the string type and returned when set
 # => 'key'
+db.set('test', 12, 'i')
+# => 'test'
+db.get('test')
+# => 12
+# note that the 'i' sets to int
 ```
 
 ### Get
@@ -74,10 +80,10 @@ all
 
 ```ruby
 db.set('apples', '10')
-db.set('ants',   '10')
+db.set('ants',   10, 'i')
 db.set('things', '10')
 db.all
-# =>[{ 'apples': '10' }, { 'ants': '10' }, { 'things': '10' }]
+# =>[{ 'apples': '10' }, { 'ants': 10 }, { 'things': '10' }]
 ```
 
 ## Usage

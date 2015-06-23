@@ -21,13 +21,13 @@ module Gkv
   end
 
   module DbFunctions
-    def update_items(key, value)
+    def update_items(key, value, type)
       if $items.keys.include? key
         history = $items[key]
-        history << Gkv::GitFunctions.hash_object(value.to_s)
+        history << [Gkv::GitFunctions.hash_object(value.to_s), type]
         $items[key] = history
       else
-        $items[key] = [Gkv::GitFunctions.hash_object(value.to_s)]
+        $items[key] = [[Gkv::GitFunctions.hash_object(value.to_s), type]]
       end
     end
   end
