@@ -1,4 +1,6 @@
-$items = {}
+require 'yaml'
+
+$ITEMS = {}
 
 module Gkv
   class Database
@@ -9,32 +11,27 @@ module Gkv
       `git init`
     end
 
-    def set(key, value, type='s')
-      update_items(key, value, type)
+    def set(key, value)
+      update_items(key, value)
       key
     end
 
     def get(key)
-      if $items.keys.include? key
-        hash = $items.fetch(key.to_s).last.first
-        type = $items.fetch(key.to_s).last.last
-        Gkv::GitFunctions.cat_file(hash).send("to_#{type}".to_sym)
+      if $ITEMS.keys.include? key
+        YAML.load(Gkv::GitFunctions.cat_file($ITEMS[key].last))
       else
         raise KeyError
       end
     end
 
     def get_version(version, key)
-      hash = $items[key][version.to_i - 1].first
-      type = $items[key][version.to_i - 1].last
-      Gkv::GitFunctions.cat_file(hash).send("to_#{type}".to_sym)
+      YAML.load(Gkv::GitFunctions.cat_file($ITEMS[key][version.to_i - 1]))
     end
 
     def all
-      $items.keys.map { |key|
-        hash = $items[key].last.first
-        type = $items[key].last.last
-        value = Gkv::GitFunctions.cat_file(hash).send("to_#{type}".to_sym)
+      $ITEMS.keys.map { |key|
+        hash = $ITEMS[key].last
+        value = YAML.load(Gkv::GitFunctions.cat_file(hash))
         { "#{key}": value }
       }
     end

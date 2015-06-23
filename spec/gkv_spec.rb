@@ -4,7 +4,7 @@ describe Gkv do
   let(:db) { Gkv::Database.new }
 
   def clear_db
-    $items = {}
+    $ITEMS = {}
   end
 
   before(:each) { clear_db }
@@ -17,36 +17,48 @@ describe Gkv do
 
   context "on set" do
     it 'sets a key' do
-      db.set('Apples', 10, 'i')
+      db.set('Apples', 10)
       expect(db.get('Apples')).to eq 10
     end
 
     it 'modifies a key' do
-      db.set('Apples', 12, 'f')
-      db.set('Apples', 10, 'f')
+      db.set('Apples', 12)
+      db.set('Apples', 10)
       expect(db.get('Apples')).to eq 10.0
     end
 
     it 'keeps a history of a keys values' do
-      db.set('Pants', 10, 'i')
-      db.set('Pants', '14')
-      expect(db.get_version(1, 'Pants')).to eq 10
-      expect(db.get_version(2, 'Pants')).to eq '14'
-    end
-
-    it 'coerces integer input to strings by default' do
       db.set('Pants', 10)
-      expect(db.get('Pants')).to eq '10'
+      db.set('Pants', 'oats')
+      expect(db.get_version(1, 'Pants')).to eq 10
+      expect(db.get_version(2, 'Pants')).to eq 'oats'
     end
 
-    it 'can set a float type' do
-      db.set('Pants', '10', 'f')
+    it 'can return a float type' do
+      db.set('Pants', '10')
       expect(db.get('Pants')).to eq 10.0
     end
 
-    it 'can set an integer type' do
-      db.set('Pants', '10', 'i')
+    it 'can return an integer type' do
+      db.set('Pants', '10')
       expect(db.get('Pants')).to eq 10
+    end
+
+    it 'can return a json/hash type' do
+      db.set('stuff', '{key: "value"}')
+      res = db.get('stuff')
+      expect(res).to be_an_instance_of Hash
+      expect(res.to_s).to eq '{"key"=>"value"}'
+    end
+
+    it 'can return an array type' do
+      db.set('favorites', ['pants', 'lack of pants', 'party pants'])
+      expect(db.get('favorites')).to eq ['pants', 'lack of pants', 'party pants']
+    end
+
+    it 'can return a bool type' do
+      db.set('stuff', true)
+      expect(db.get('stuff')).to eq true
     end
   end
 
@@ -56,10 +68,10 @@ describe Gkv do
     end
 
     it 'can get all stored items' do
-      db.set('ants', 10, 'i')
-      db.set('bob', 10, 'f')
+      db.set('ants', 10)
+      db.set('bob', 'pants')
       db.set('cants', 10)
-      expect(db.all).to eq [{ 'ants': 10 }, { 'bob': 10.0 }, { 'cants': '10' }]
+      expect(db.all).to eq [{ 'ants': 10 }, { 'bob': 'pants' }, { 'cants': 10 }]
     end
   end
 end
