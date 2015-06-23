@@ -32,15 +32,14 @@ There are 4 main functions:
 
 ### Set
 
-set(*key*, *value*, *type*)
-Type defaults to `s`, while `i` and `f` are also acceptable
+set(*key*, *value*)
 
 ```ruby
 db = Gkv::Database.new
-db.set('key', '12') # no type declaration defaults to string
+db.set('key', '12')
 # input is all coerced to the string type and returned when set
 # => 'key'
-db.set('test', 12, 'i')
+db.set('test', 12)
 # => 'test'
 db.get('test')
 # => 12
@@ -57,6 +56,9 @@ db.set('apples', '10')
 db.get('apples')
 # => '10'
 ```
+
+The type is inferred from when you initially set the value. Note that saving the string `'1'` will
+return the integer `1` due to the naive nature of the implementation.
 
 ### Get Version
 
@@ -79,11 +81,11 @@ db.get_version(2, 'apples')
 all
 
 ```ruby
-db.set('apples', '10')
-db.set('ants',   10, 'i')
+db.set('apples', 20.0)
+db.set('ants',   'pants')
 db.set('things', '10')
 db.all
-# =>[{ 'apples': '10' }, { 'ants': 10 }, { 'things': '10' }]
+# =>[{ 'apples': 20.0 }, { 'ants': 10 }, { 'things': '10' }]
 ```
 
 ## Usage
