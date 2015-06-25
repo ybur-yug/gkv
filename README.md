@@ -37,13 +37,9 @@ set(*key*, *value*)
 ```ruby
 db = Gkv::Database.new
 db.set('key', '12')
-# input is all coerced to the string type and returned when set
 # => 'key'
 db.set('test', 12)
 # => 'test'
-db.get('test')
-# => 12
-# note that the 'i' sets to int
 ```
 
 ### Get
@@ -58,7 +54,8 @@ db.get('apples')
 ```
 
 The type is inferred from when you initially set the value. Note that saving the string `'1'` will
-return the integer `1` due to the naive nature of the implementation.
+return the integer `1` due to the naive nature of the implementation. Hashes, arrays and booleans
+behave as expected when saved.
 
 ### Get Version
 
@@ -83,9 +80,9 @@ all
 ```ruby
 db.set('apples', 20.0)
 db.set('ants',   'pants')
-db.set('things', '10')
+db.set('things', {})
 db.all
-# =>[{ 'apples': 20.0 }, { 'ants': 10 }, { 'things': '10' }]
+# =>[{ 'apples': 20.0 }, { 'ants': 'pants'}, { 'things': {} }]
 ```
 
 ## Usage
@@ -112,8 +109,6 @@ db.get_version(1, 'Apples')
 db.get('magic')
 # => KeyError
 ```
-
-There is an example application included in the `example_app` directory that utilizes Sinatra
 
 ## Development
 

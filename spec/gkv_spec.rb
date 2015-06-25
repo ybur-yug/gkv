@@ -56,8 +56,9 @@ describe Gkv do
       it 'deals with old hash syntax' do
         db.set('stuff', {:key => "value"})
         res = db.get('stuff')
+        desired = {:key=>"value"}
         expect(res).to be_an_instance_of Hash
-        expect(res).to eq({:key=>"value"})
+        expect(res).to eq(desired)
       end
 
       it 'handles created hash via literals' do
@@ -65,8 +66,14 @@ describe Gkv do
         hash[:stuff] = 'thing'
         db.set('stuff', hash)
         res = db.get('stuff')
+        desired = {:stuff=>"thing"}
         expect(res).to be_an_instance_of Hash
-        expect(res).to eq({:stuff=>"thing"})
+        expect(res).to eq(desired)
+      end
+
+      it 'can set hashes in a list' do
+        db.set('stuff', [{key: 'value'}, {key: 'value'}])
+        expect(db.get('stuff')).to eq [{key: 'value'}, {key: 'value'}]
       end
     end
 
