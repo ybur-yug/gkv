@@ -11,7 +11,7 @@ module Gkv
 
     def write_tmpfile(data)
       f = File.open('tmp.txt', 'w+')
-      f.write(data.to_s)
+      f.write(data)
       f.close
     end
 
@@ -24,10 +24,10 @@ module Gkv
     def update_items(key, value)
       if $ITEMS.keys.include? key
         history = $ITEMS[key]
-        history << Gkv::GitFunctions.hash_object(value.to_s)
+        history << Gkv::GitFunctions.hash_object(value)
         $ITEMS[key] = history
       else
-        $ITEMS[key] = [Gkv::GitFunctions.hash_object(value.to_s)]
+        $ITEMS[key] = [Gkv::GitFunctions.hash_object(value)]
       end
     end
   end
