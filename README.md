@@ -37,6 +37,16 @@ There are 4 main functions:
 
 ### Set
 
+db[*key*, *value*]
+
+```ruby
+db = Gkv::Database.new
+db['Pants'] = 'red leather'
+# => 'red leather'
+```
+This allows a shorthand notation using operator overloading to set without invoking `set` directly.
+
+
 set(*key*, *value*)
 
 ```ruby
