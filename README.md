@@ -1,5 +1,8 @@
 # Gkv
 [![Join the chat at https://gitter.im/ybur-yug/gkv](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ybur-yug/gkv?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+<a href="https://codeclimate.com/github/ybur-yug/gkv"><img src="https://codeclimate.com/github/ybur-yug/gkv/badges/gpa.svg" /></a>
+[![Gem Version](https://badge.fury.io/rb/gkv.svg)](http://badge.fury.io/rb/gkv)
+
 
 Gkv is a simple git wrapper that allows you to use it as a kv store
 
