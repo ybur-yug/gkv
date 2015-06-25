@@ -9,11 +9,11 @@ describe Gkv do
 
   before(:each) { clear_db }
 
-#  context "as a gem" do
-#    it 'has a version number' do
-#      expect(Gkv::VERSION).not_to be nil
-#    end
-#  end
+  context "as a gem" do
+    it 'has a version number' do
+      expect(Gkv::VERSION).not_to be nil
+    end
+  end
 
   context "on set" do
     it 'sets a key' do
