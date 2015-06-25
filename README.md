@@ -37,7 +37,7 @@ There are 4 main functions:
 
 ### Set
 
-db[*key*, *value*]
+db[*key*] = *value*
 
 ```ruby
 db = Gkv::Database.new
