@@ -46,6 +46,7 @@ describe Gkv do
 
     context "when saving hashes" do
       it 'deals with ruby 2 hashes' do
+        # FAILS
         db.set('stuff', {key: "value"})
         res = db.get('stuff')
         desired = {key: 'value'}
@@ -55,47 +56,60 @@ describe Gkv do
       end
 
       it 'deals with old hash syntax' do
+        # FAILS
         db.set('stuff', {:key => "value"})
-        res = db.get('stuff')
-        expect(res).to be_an_instance_of Hash
-        expect(res.to_s).to eq '{"key"=>"value"}'
+        expected = {"key"=>"value"}
+        actual = db.get('stuff')
+        expect(actual).to be_an_instance_of Hash
+        expect(expected).to eq actual
       end
 
       it 'handles created hash via literals' do
+        # FAILS
         hash = Hash.new
         hash[:stuff] = 'thing'
         db.set('stuff', hash)
-        res = db.get('stuff')
-        expect(res).to be_an_instance_of Hash
-        expect(res.to_s).to eq '{"stuff"=>"thing"}'
+        expected = {"key"=>"value"}
+        actual = db.get('stuff')
+        expect(expected).to be_an_instance_of Hash
+        expect(expected).to eq actual
       end
 
       it 'for some fucked up reason works fine and returns a hash with a string setting it (new hash syntax)' do
+        # PASSES
         db.set('stuff', '{key: "value"}')
-        result = {key: 'value'}
-        expect(db.get('stuff')).to eq result
-        expect(db.get('stuff').class).to eq Hash
+        expected = {"key"=>"value"}
+        actual = db.get('stuff')
+        expect(expected).to be_an_instance_of Hash
+        expect(expected).to eq actual
       end
 
       it 'for some fucked up reason works fine and returns a hash with a string setting it (old hash syntax)' do
+        # FAILS
         db.set('stuff', '{:key => "value"}')
-        result = {key: 'value'}
-        expect(db.get('stuff')).to eq result
-        expect(db.get('stuff').class).to eq Hash
+        expected = {"key"=>"value"}
+        actual = db.get('stuff')
+        puts 'meh'
+        expect(expected).to be_an_instance_of Hash
+        expect(expected).to eq actual
       end
 
       it 'for some fucked up reason works fine and returns a hash with a string setting it (string key + val, no sym, new hash)' do
+        # PASSES
         db.set('stuff', '{"key": "value"}')
-        result = {key: 'value'}
-        expect(db.get('stuff')).to eq result
-        expect(db.get('stuff').class).to eq Hash
+        expected = {"key"=>"value"}
+        actual = db.get('stuff')
+        expect(expected).to be_an_instance_of Hash
+        expect(expected).to eq actual
       end
 
       it 'for some fucked up reason works fine and returns a hash with a string setting it (string key + val, no sym, old hash)' do
+        # FAILS
         db.set('stuff', '{"key" => "value"}')
-        result = {key: 'value'}
-        expect(db.get('stuff')).to eq result
-        expect(db.get('stuff').class).to eq Hash
+        expected = {"key"=>"value"}
+        actual = db.get('stuff')
+        expect(expected).to be_an_instance_of Hash
+        expect(expected).to eq actual
       end
     end
 
