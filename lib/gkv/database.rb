@@ -16,12 +16,20 @@ module Gkv
       key
     end
 
+    def []=(key, value)
+      set(key, value)
+    end
+
     def get(key)
       if $ITEMS.keys.include? key
         YAML.load(Gkv::GitFunctions.cat_file($ITEMS[key].last))
       else
         raise KeyError
       end
+    end
+
+    def [](key)
+      get(key)
     end
 
     def get_version(version, key)
