@@ -9,6 +9,8 @@ Gkv is a simple git wrapper that allows you to use it as a kv store
 
 ![proof in our pudding](http://i.imgur.com/EKdt7oR.png)
 
+[![asciicast](https://asciinema.org/a/a157ouz4ju5cy9v5r3pexhj4k.png)](https://asciinema.org/a/a157ouz4ju5cy9v5r3pexhj4k)
+
 The documentation says thats what it does. So why not yo?
 
 #### This is the product of a [tutorial](https://github.com/ybur-yug/git_kv_store_tutorial) I wrote to explore git.
@@ -89,8 +91,6 @@ db.all
 ```
 
 ## Usage
-
-[![asciicast](https://asciinema.org/a/0ss6cqmm6yhnyvz88bdy37oiq.png)](https://asciinema.org/a/0ss6cqmm6yhnyvz88bdy37oiq)
 
 ```ruby
 db = Gkv::Database.new
