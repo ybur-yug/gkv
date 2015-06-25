@@ -58,6 +58,17 @@ db.set('test', 12)
 ```
 
 ### Get
+
+db[*key*]
+
+```ruby
+db = Gkv::Database.new
+db['Pants']
+# => 'red leather'
+```
+This allows a shorthand notation using operator overloading to get without invoking `get` directly.
+
+
 get(*key*)
 
 ```ruby
