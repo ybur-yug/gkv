@@ -47,28 +47,14 @@ describe Gkv do
     context "when saving hashes" do
       it 'deals with ruby 2 hashes' do
         db.set('stuff', {key: "value"})
-        res = db.get('stuff')
-        desired = {key: 'value'}
-        expect(res).to be_an_instance_of Hash
-        expect(res).to eq desired
+        expect(db.get('stuff')).to be_an_instance_of Hash
+        expect(db.get('stuff')).to eq({key: 'value'})
       end
 
       it 'deals with old hash syntax' do
         db.set('stuff', {:key => "value"})
-        res = db.get('stuff')
-        desired = {:key=>"value"}
-        expect(res).to be_an_instance_of Hash
-        expect(res).to eq(desired)
-      end
-
-      it 'handles created hash via literals' do
-        hash = Hash.new
-        hash[:stuff] = 'thing'
-        db.set('stuff', hash)
-        res = db.get('stuff')
-        desired = {:stuff=>"thing"}
-        expect(res).to be_an_instance_of Hash
-        expect(res).to eq(desired)
+        expect(db.get('stuff')).to be_an_instance_of Hash
+        expect(db.get('stuff')).to eq({key: 'value'})
       end
 
       it 'can set hashes in a list' do
@@ -101,4 +87,3 @@ describe Gkv do
     end
   end
 end
-
