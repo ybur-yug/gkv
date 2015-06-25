@@ -12,7 +12,7 @@ module Gkv
     end
 
     def set(key, value)
-      update_items(key, value.to_s)
+      update_items(key, YAML.dump(value))
       key
     end
 
