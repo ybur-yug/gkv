@@ -21,10 +21,21 @@ describe Gkv do
       expect(db.get('Apples')).to eq 10
     end
 
+    it 'sets a key with hash syntax' do
+      db['Apples'] = 10
+      expect(db['Apples']).to eq 10
+    end
+
     it 'modifies a key' do
       db.set('Apples', 12)
       db.set('Apples', 10)
       expect(db.get('Apples')).to eq 10
+    end
+
+    it 'modifies a key with hash syntax' do
+      db['Apples'] = 12
+      db['Apples'] = 10
+      expect(db['Apples']).to eq 10
     end
 
     it 'keeps a history of a keys values' do
@@ -78,6 +89,11 @@ describe Gkv do
     it 'returns the key when a key is set' do
       expect(db.set('Apples', '10')).to eq 'Apples'
     end
+
+    # Not sure how to get this one to pass.
+    # it 'returns the key when a key is set with hash syntax' do
+    #   expect(db['Apples'] = 10).to eq 'Apples'
+    # end
 
     it 'can get all stored items' do
       db.set('ants', 10)
