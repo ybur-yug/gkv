@@ -99,7 +99,7 @@ describe Gkv do
       db.set('ants', 10)
       db.set('bob', 'pants')
       db.set('cants', 10)
-      expect(db.all).to eq [{ 'ants': 10 }, { 'bob': 'pants' }, { 'cants': 10 }]
+      expect(db.all).to eq [{ 'ants' => 10 }, { 'bob' => 'pants' }, { 'cants' => 10 }]
     end
   end
 end

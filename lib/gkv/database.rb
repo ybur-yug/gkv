@@ -40,7 +40,7 @@ module Gkv
       $ITEMS.keys.map { |key|
         hash = $ITEMS[key].last
         value = YAML.load(Gkv::GitFunctions.cat_file(hash))
-        { "#{key}": value }
+        { "#{key}" => value }
       }
     end
   end
