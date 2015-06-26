@@ -83,6 +83,11 @@ describe Gkv do
       db.set('stuff', true)
       expect(db.get('stuff')).to eq true
     end
+
+    it 'does not freak out when it sees quotes' do
+      db.set('stuff" 7', 'pants')
+      expect(db.get('stuff" 7')).to eq 'pants'
+    end
   end
 
   context "on get" do
