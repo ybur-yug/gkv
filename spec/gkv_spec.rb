@@ -114,4 +114,20 @@ describe Gkv do
       expect(db.all).to eq [{ 'ants' => 10 }, { 'bob' => 'pants' }, { 'cants' => 10 }]
     end
   end
+
+  context "on save" do
+    it 'returns a hash' do
+      db.set('hello', 'world')
+      expect(db.save).to be_an_instance_of String
+    end
+
+    it 'can be loaded given a hash' do
+      db.set('hello', 'world')
+      hash = db.save
+      $ITEMS = {}
+      db.load(hash)
+      expect(db.get('hello')).to eq 'world'
+      expect($ITEMS.keys).to eq ['hello']
+    end
+  end
 end
