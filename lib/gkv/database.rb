@@ -11,6 +11,14 @@ module Gkv
       `git init`
     end
 
+    def save
+      Gkv::GitFunctions.hash_object(YAML.dump($ITEMS))
+    end
+
+    def load(hash)
+      $ITEMS = YAML.load(Gkv::GitFunctions.cat_file(hash))
+    end
+
     def set(key, value)
       update_items(key, YAML.dump(value))
       key
