@@ -1,4 +1,7 @@
-v2.2.x
+v0.2.3
+Add operator overloading for set/get sytax
+
+v0.2.2
 Full type system. All bugs related to hashes from 0.2.0 and 0.2.1 fixed.
 
 v0.1.x
