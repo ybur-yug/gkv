@@ -3,16 +3,7 @@ module Gkv
     extend self
 
     def hash_object(data)
-      write_tmpfile(data)
-      hash = `git hash-object -w tmp.txt`.strip!
-      File.delete('tmp.txt')
-      hash
-    end
-
-    def write_tmpfile(data)
-      f = File.open('tmp.txt', 'w+')
-      f.write(data)
-      f.close
+      `echo #{data} | git hash-object -w --stdin`.strip!
     end
 
     def cat_file(hash)
