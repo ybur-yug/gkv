@@ -1,3 +1,6 @@
+v0.2.4
+Switch `all` method to use hashrocket syntax for pre-Ruby 2.2.x compatibility
+
 v0.2.3
 Add operator overloading for set/get sytax
 
