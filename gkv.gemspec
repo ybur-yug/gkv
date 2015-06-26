@@ -25,6 +25,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec"
+  spec.add_development_dependency "mutant", "~> 0.8.0"
+  spec.add_development_dependency "mutant-rspec", "~> 0.8.0"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "debt_ceiling"
 end
