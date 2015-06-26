@@ -3,7 +3,7 @@ module Gkv
     extend self
 
     def hash_object(data)
-      `echo #{data} | git hash-object -w --stdin`.strip!
+      `echo "#{data}" | git hash-object -w --stdin`.strip!
     end
 
     def cat_file(hash)
