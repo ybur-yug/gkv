@@ -1,3 +1,6 @@
+v0.2.5
+Revert to stdin piping for object hashing
+
 v0.2.4
 Switch `all` method to use hashrocket syntax for pre-Ruby 2.2.x compatibility
 
