@@ -15,6 +15,13 @@ describe Gkv do
     end
   end
 
+  context "git functions" do
+    it 'hash does not have excess newlines' do
+      data = Gkv::GitFunctions::hash_object("hello")
+      expect(data).to eq data.strip
+    end
+  end
+
   context "on set" do
     it 'sets a key' do
       db.set('Apples', 10)
