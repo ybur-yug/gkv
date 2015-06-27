@@ -1,7 +1,5 @@
 # Gkv
 
-## NOTE: this got unexpectedly popular on Hacker News. If you disagree with or think something could be done better, PLEASE TELL ME. I'm all for making this truly useable for general application and not just a toy.
-
 [![Join the chat at https://gitter.im/ybur-yug/gkv](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ybur-yug/gkv?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <a href="https://codeclimate.com/github/ybur-yug/gkv"><img src="https://codeclimate.com/github/ybur-yug/gkv/badges/gpa.svg" /></a>
 [![Gem Version](https://badge.fury.io/rb/gkv.svg)](http://badge.fury.io/rb/gkv)
@@ -143,6 +141,13 @@ tests. You can also run `bin/console` for an interactive prompt that will allow 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version,
 update the version number in `version.rb`, and then run `bundle exec rake release`, which will create
 a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+### Dev Roadmap
+#### 0.3
+- Remote synchronization & Backup []
+- Persistance & Dump Loading [x]
+- Stop wrapping git via it's CLI []
+- (possible) Handle symbol types
 
 ## Contributing
 Feel free to check out the gitter room and ask whats on the agenda.
