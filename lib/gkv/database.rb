@@ -44,6 +44,10 @@ module Gkv
       YAML.load(Gkv::GitFunctions.cat_file($ITEMS[key][version.to_i - 1]))
     end
 
+    def all_versions(key)
+      $ITEMS[key].map { |hash| YAML.load(Gkv::GitFunctions.cat_file(hash)) }
+    end
+
     def all
       $ITEMS.keys.map { |key|
         hash = $ITEMS[key].last
