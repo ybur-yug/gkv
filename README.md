@@ -110,6 +110,16 @@ db.all
 # =>[{ 'apples': 20.0 }, { 'ants': 'pants'}, { 'things': {} }]
 ```
 
+all_versions(*key*)
+
+```ruby
+db.set('apples', 5)
+db.set('apples', 'pants')
+db.set('apples', 5.0)
+db.all_versions('apples')
+# => [ 5, 'pants', 5.0]
+```
+
 ## Usage
 
 ```ruby
