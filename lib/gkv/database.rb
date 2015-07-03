@@ -5,7 +5,6 @@ $ITEMS = {}
 module Gkv
   class Database
     include Gkv::DbFunctions
-    attr_accessor :items
 
     def initialize
       `git init`
