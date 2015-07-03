@@ -8,14 +8,11 @@ module Gkv
 
     def initialize
       `git init`
+      @git = Gkv::GitFunctions
     end
 
-    def save
-      Gkv::GitFunctions.hash_object(YAML.dump($ITEMS))
-    end
-
-    def load(hash)
-      $ITEMS = YAML.load(Gkv::GitFunctions.cat_file(hash))
+    def []=(key, value)
+      set(key, value)
     end
 
     def set(key, value)
@@ -23,36 +20,38 @@ module Gkv
       key
     end
 
-    def []=(key, value)
-      set(key, value)
-    end
-
-    def get(key)
-      if $ITEMS.keys.include? key
-        YAML.load(Gkv::GitFunctions.cat_file($ITEMS[key].last))
-      else
-        raise KeyError
-      end
-    end
-
     def [](key)
       get(key)
     end
 
     def get_version(version, key)
-      YAML.load(Gkv::GitFunctions.cat_file($ITEMS[key][version.to_i - 1]))
+      YAML.load(@git.cat_file($ITEMS[key][version.to_i - 1]))
     end
 
     def all_versions(key)
-      $ITEMS[key].map { |hash| YAML.load(Gkv::GitFunctions.cat_file(hash)) }
+      $ITEMS[key].map { |hash| YAML.load(@git.cat_file(hash)) }
+    end
+
+    def get(key)
+      if $ITEMS.keys.include?(key)
+        YAML.load(@git.cat_file($ITEMS[key].last))
+      else
+        raise KeyError
+      end
     end
 
     def all
       $ITEMS.keys.map { |key|
-        hash = $ITEMS[key].last
-        value = YAML.load(Gkv::GitFunctions.cat_file(hash))
-        { "#{key}" => value }
+        { "#{key}" => YAML.load(@git.cat_file($ITEMS[key].last)) }
       }
+    end
+
+    def save
+      @git.hash_object(YAML.dump($ITEMS))
+    end
+
+    def load(hash)
+      $ITEMS = YAML.load(@git.cat_file(hash))
     end
   end
 end
