@@ -102,16 +102,18 @@ describe Gkv do
       expect(db.set('Apples', '10')).to eq 'Apples'
     end
 
-    # Not sure how to get this one to pass.
-    # it 'returns the key when a key is set with hash syntax' do
-    #   expect(db['Apples'] = 10).to eq 'Apples'
-    # end
-
     it 'can get all stored items' do
       db.set('ants', 10)
       db.set('bob', 'pants')
       db.set('cants', 10)
       expect(db.all).to eq [{ 'ants' => 10 }, { 'bob' => 'pants' }, { 'cants' => 10 }]
+    end
+
+    it 'can get all versions of a given item' do
+      db.set('ants', 10)
+      db.set('ants', 10.0)
+      db.set('ants', 11)
+      expect(db.all_versions('ants')).to eq [10, 10.0, 11]
     end
   end
 
