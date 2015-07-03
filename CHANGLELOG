@@ -1,3 +1,6 @@
+v0.2.6
+add `all_versions` method
+
 v0.2.5
 Revert to stdin piping for object hashing
 
