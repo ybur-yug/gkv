@@ -3,16 +3,6 @@ require 'spec_helper'
 describe Gkv do
   let(:db) { Gkv::Database.new }
 
-  def clear_db
-    $ITEMS = {}
-  end
-
-  def load_db(kv_list)
-    kv_list.each do |kv|
-      db.set(kv.keys.first, kv.values.first)
-    end
-  end
-
   before(:each) { clear_db }
 
   context "as a gem" do
