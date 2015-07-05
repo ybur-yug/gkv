@@ -116,7 +116,7 @@ describe Gkv do
     it 'can be loaded given a hash' do
       load_db([{ 'hello' => 'world' }])
       hash = db.save
-      $ITEMS = {}
+      clear_db
       db.load(hash)
       expect(db.get('hello')).to eq 'world'
       expect($ITEMS.keys).to eq ['hello']
