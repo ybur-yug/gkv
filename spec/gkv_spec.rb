@@ -113,11 +113,17 @@ describe Gkv do
       expect(db.save).to be_an_instance_of String
     end
 
+    it 'saves the hash to a dotfile for persistance' do
+      load_db([{ 'hello' => 'world' }])
+      db.save
+      expect(`ls -a`.include?(".database")).to be true
+    end
+
     it 'can be loaded given a hash' do
       load_db([{ 'hello' => 'world' }])
-      hash = db.save
+      db.save
       clear_db
-      db.load(hash)
+      db.load(File.open('.database').read)
       expect(db.get('hello')).to eq 'world'
       expect($ITEMS.keys).to eq ['hello']
     end

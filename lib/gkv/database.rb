@@ -47,11 +47,17 @@ module Gkv
     end
 
     def save
-      @git.hash_object(YAML.dump($ITEMS))
+      hash = @git.hash_object(YAML.dump($ITEMS))
+      File.open(".database", 'w') { |f| f.write(hash) }
+      hash
     end
 
     def load(hash)
-      $ITEMS = YAML.load(@git.cat_file(hash))
+      begin
+        $ITEMS = YAML.load(@git.cat_file(File.open('.database').read))
+      rescue
+        $ITEMS
+      end
     end
   end
 end
