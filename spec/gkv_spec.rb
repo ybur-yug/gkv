@@ -46,6 +46,11 @@ describe Gkv do
       expect(db.get_version(2, 'Pants')).to eq 'oats'
     end
 
+    it 'can set values containing quotes' do
+      db['TestingQuotes'] = %(single ' and double " quote)
+      expect(db['TestingQuotes']).to eq %(single ' and double " quote)
+    end
+
     it 'can return a float type' do
       load_db([{ 'Pants' => 10.0 }])
       expect(db.get('Pants')).to eq 10.0

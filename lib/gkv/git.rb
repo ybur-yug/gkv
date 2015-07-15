@@ -1,9 +1,15 @@
+require "open3"
+
 module Gkv
   module GitFunctions
     extend self
 
     def hash_object(data)
-      `echo "#{data}" | git hash-object -w --stdin`.strip!
+      Open3.popen3("git hash-object -w --stdin") do |stdin, stdout, stderr|
+        stdin.write data
+        stdin.close
+        stdout.read.strip
+      end
     end
 
     def cat_file(hash)
