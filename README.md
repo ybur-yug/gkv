@@ -157,7 +157,6 @@ a git tag for the version, push git commits and tags, and push the `.gem` file t
 - Remote synchronization & Backup []
 - Persistance & Dump Loading [x]
 - Stop wrapping git via it's CLI []
-- (possible) Handle symbol types
 
 ## Contributing
 Feel free to check out the gitter room and ask whats on the agenda.

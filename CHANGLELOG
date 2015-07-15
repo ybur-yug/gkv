@@ -1,3 +1,6 @@
+v0.2.8
+Remove shell injection vulnerability
+
 v0.2.7
 Major refactors, no API changes
 
