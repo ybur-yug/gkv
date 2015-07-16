@@ -12,8 +12,6 @@ Gkv is a simple git wrapper that allows you to use it as a kv store
 
 The documentation says thats what it does. So why not yo?
 
-#### This is the product of a [tutorial](https://github.com/ybur-yug/git_kv_store_tutorial) I wrote to explore git.
-
 ## Installation
 
 Add this line to your application's Gemfile:
