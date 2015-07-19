@@ -159,9 +159,7 @@ a git tag for the version, push git commits and tags, and push the `.gem` file t
 ## Contributing
 Feel free to check out the gitter room and ask whats on the agenda.
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/ybur-yug/gkv. This project is
-intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to
-the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/ybur-yug/gkv.
 
 ## License
 
