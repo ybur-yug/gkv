@@ -133,4 +133,12 @@ describe Gkv do
       expect($ITEMS.keys).to eq ['hello']
     end
   end
+
+  context 'on destruction' do
+    it 'can destroy itself' do
+      load_db([{ 'hello' => 'world' }])
+      db.destroy!
+      expect($ITEMS == {}).to eq true
+    end
+  end
 end

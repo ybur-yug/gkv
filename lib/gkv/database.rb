@@ -59,5 +59,9 @@ module Gkv
         $ITEMS
       end
     end
+
+    def destroy!
+      $ITEMS = {}
+    end
   end
 end

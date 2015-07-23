@@ -118,6 +118,21 @@ db.all_versions('apples')
 # => [ 5, 'pants', 5.0]
 ```
 
+### Destroy
+
+```ruby
+db.set('apples', 20.0)
+db.set('ants',   'pants')
+db.set('things', {})
+db.destroy!
+db['apples']
+# => KeyError
+db['ants']
+# => KeyError
+db['things']
+# => KeyError
+```
+
 ## Usage
 
 ```ruby
